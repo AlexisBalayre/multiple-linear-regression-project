@@ -2,10 +2,10 @@ import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 
-from linear_regression.LinearRegressionCustomModel1 import LinearRegressionCustomModel1
-from linear_regression.LinearRegressionCustomModel2 import LinearRegressionCustomModel2
-from linear_regression.PolynomialDegree5RegressionCustomModel import PolynomialDegree5RegressionCustomModel
-from linear_regression.QuadraticRegressionCustomModel import QuadraticRegressionCustomModel
+from library.LinearRegressionCustomModel1 import LinearRegressionCustomModel1
+from library.LinearRegressionCustomModel2 import LinearRegressionCustomModel2
+from library.PolynomialDegree5RegressionCustomModel import PolynomialDegree5RegressionCustomModel
+from library.QuadraticRegressionCustomModel import QuadraticRegressionCustomModel
 
 
 # Function to compute the optimal train size

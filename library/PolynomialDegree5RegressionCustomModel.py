@@ -1,4 +1,4 @@
-from linear_regression.LinearRegressionCustomModel1 import LinearRegressionCustomModel1
+from library.LinearRegressionCustomModel1 import LinearRegressionCustomModel1
 import numpy as np
 
 # Add polynomial terms up to degree 5 to the dataset
