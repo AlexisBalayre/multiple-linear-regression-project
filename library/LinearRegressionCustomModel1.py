@@ -21,10 +21,10 @@ class LinearRegressionCustomModel1:
         # Initialise theta with a vector of zeros
         self.theta = np.zeros(r)
 
-        # Initialise variables for convergence check 
-        prev_cost = float('inf')  # Set initial previous cost to infinity
+        # Initialise variables for convergence check
+        prev_cost = float("inf")  # Set initial previous cost to infinity
         tolerance = 1e-6  # Convergence tolerance
-        gradient_threshold = 1e5 # Gradient clipping threshold
+        gradient_threshold = 1e5  # Gradient clipping threshold
 
         # Gradient descent algorithm
         for _ in range(self.iterations_nb):
@@ -52,10 +52,10 @@ class LinearRegressionCustomModel1:
 
             # Update previous cost
             prev_cost = cost
-        
+
         # Return None if training was not successful
         if np.isnan(cost):
-            return None, float('inf')  # Return None for theta and infinity for cost
+            return None, float("inf")  # Return None for theta and infinity for cost
 
         return self.theta, cost
 
