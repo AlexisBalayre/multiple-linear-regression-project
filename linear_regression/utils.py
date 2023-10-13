@@ -4,6 +4,8 @@ from sklearn.model_selection import train_test_split
 
 from linear_regression.LinearRegressionCustomModel1 import LinearRegressionCustomModel1
 from linear_regression.LinearRegressionCustomModel2 import LinearRegressionCustomModel2
+from linear_regression.PolynomialDegree5RegressionCustomModel import PolynomialDegree5RegressionCustomModel
+from linear_regression.QuadraticRegressionCustomModel import QuadraticRegressionCustomModel
 
 
 # Function to compute the optimal train size
@@ -29,8 +31,10 @@ def computeOptimalParameters(x_train, x_test, y_train, y_test, model_type):
         5000,
         7000,
         10000,
+        20000,
+        50000
     ]  # Number of iterations
-    learning_rates = [0.1, 0.01, 0.05, 0.001, 0.005]  # Learning rate
+    learning_rates = [0.1, 0.01, 0.05, 0.001, 0.005, 0.0001, 0.0005]  # Learning rate
 
     # Initialise an empty array to store the results
     results = []
@@ -42,14 +46,25 @@ def computeOptimalParameters(x_train, x_test, y_train, y_test, model_type):
     for iterations_nb in iterations_numbers:
         for learning_rate in learning_rates:
             # Initialise model
-            if model_type == 2:
-                # Model 2
+            if model_type == "linear_2":
+                # Linear Model 2
                 model = LinearRegressionCustomModel2(learning_rate, iterations_nb)
+            elif model_type == "quadratic":
+                # Quadratic model
+                model = QuadraticRegressionCustomModel(learning_rate, iterations_nb)
+            elif model_type == "degree_5":
+                # Polynomial degree 5 model
+                model = PolynomialDegree5RegressionCustomModel(
+                    learning_rate, iterations_nb
+                )
             else:
                 # Model 1
                 model = LinearRegressionCustomModel1(learning_rate, iterations_nb)
             # Fit model to training data
             theta, cost = model.fit(x_train, y_train)
+            # Skip if training was not successful
+            if theta is None:
+                continue
             # Compute metrics
             rSquare, meanAbErr, meanSqErr, rootMeanSqErr = model.metrics(x_test, y_test)
             # Save results
@@ -90,3 +105,14 @@ def prepare_data(x, y, train_size):
 
     #  Return train and test sets
     return x_train, x_test, y_train, y_test
+
+
+# Function to add quadratic terms to the dataset
+def add_quadratic_terms(X):
+    # Square each feature
+    X_squared = np.square(X)
+
+    # Concatenate the original features and their squared values
+    return np.hstack((X, X_squared))
+
+

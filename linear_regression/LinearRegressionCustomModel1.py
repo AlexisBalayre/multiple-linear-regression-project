@@ -21,6 +21,11 @@ class LinearRegressionCustomModel1:
         # Initialise theta with a vector of zeros
         self.theta = np.zeros(r)
 
+        prev_cost = float('inf')  # Set initial previous cost to infinity
+        tolerance = 1e-6  # Convergence tolerance
+        # Gradient clipping threshold
+        gradient_threshold = 1e5
+
         # Gradient descent algorithm
         for _ in range(self.iterations_nb):
             # Compute predictions (y_pred = x_train * theta)
@@ -32,11 +37,23 @@ class LinearRegressionCustomModel1:
             # Compute gradient
             gradient = (2 / n) * error.dot(x_train)
 
+            # Gradient clipping
+            gradient = np.clip(gradient, -gradient_threshold, gradient_threshold)
+
             # Update parameters
             self.theta -= self.learning_rate * gradient
 
             # Compute cost (mean squared error)
             cost = (1 / n) * np.sum((y_pred - y_train) ** 2)
+
+            # Convergence check
+            if abs(prev_cost - cost) < tolerance:
+                break
+
+            prev_cost = cost
+        
+        if np.isnan(cost):
+            return None, float('inf')  # Return None for theta and infinity for cost
 
         return self.theta, cost
 
