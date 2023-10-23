@@ -4,7 +4,9 @@ from sklearn.model_selection import train_test_split
 
 from library.LinearRegressionCustomModel1 import LinearRegressionCustomModel1
 from library.LinearRegressionCustomModel2 import LinearRegressionCustomModel2
-from library.PolynomialDegree5RegressionCustomModel import PolynomialDegree5RegressionCustomModel
+from library.PolynomialDegree5RegressionCustomModel import (
+    PolynomialDegree5RegressionCustomModel,
+)
 from library.QuadraticRegressionCustomModel import QuadraticRegressionCustomModel
 
 
@@ -32,7 +34,7 @@ def computeOptimalParameters(x_train, x_test, y_train, y_test, model_type):
         7000,
         10000,
         20000,
-        50000
+        50000,
     ]  # Number of iterations
     learning_rates = [0.1, 0.01, 0.05, 0.001, 0.005, 0.0001, 0.0005]  # Learning rate
 
@@ -105,14 +107,3 @@ def prepare_data(x, y, train_size):
 
     #  Return train and test sets
     return x_train, x_test, y_train, y_test
-
-
-# Function to add quadratic terms to the dataset
-def add_quadratic_terms(X):
-    # Square each feature
-    X_squared = np.square(X)
-
-    # Concatenate the original features and their squared values
-    return np.hstack((X, X_squared))
-
-

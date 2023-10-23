@@ -10,4 +10,5 @@ The goal of this project is to create a program to perform linear regression usi
 2. Create a virtual environment using `python3 -m venv venv`.
 3. Activate the virtual environment using `source venv/bin/activate`.
 4. Install the required dependencies using `pip3 install -r requirements.txt`.
-5. Use the jupiter notebook `assessment.ipynb` to run the program.
+5. Use the jupiter notebook `assessment_advertising-dataset.ipynb` to run the program on the advertising dataset.
+6. Use the jupiter notebook `assessment_auto-dataset.ipynb` to run the program on the auto dataset.
