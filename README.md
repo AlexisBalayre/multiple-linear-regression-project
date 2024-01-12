@@ -33,9 +33,9 @@ This project, led by Hyejoon Lee and Alexis Balayre, explores multiple linear re
 
    - On Windows:
 
-    ```bash
-    .\venv\Scripts\activate
-    ```
+     ```bash
+     .\venv\Scripts\activate
+     ```
 
    - On Unix or MacOS:
 
